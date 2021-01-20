@@ -17,7 +17,7 @@ app.use('/students', studentRoutes);
 app.use('/users', userRoutes);
 
 // Connect to DB
-mongoose.connect(process.env.DB_CONNECTION!, {
+mongoose.connect(process.env.DB_CONNECTION_URI!, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

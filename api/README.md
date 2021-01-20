@@ -14,7 +14,8 @@
 ### Running the server:
 
 1. Set environment variables: 
-    - `DB_CONNECTION`
+    - `DB_CONNECTION_URI`
+    - `PORT` (optional)
 
 2. Run `npm install`
 
