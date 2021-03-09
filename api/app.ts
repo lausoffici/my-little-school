@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import mongoose, { Connection } from 'mongoose';
 const studentRoutes = require('./routes/students');
 const userRoutes = require('./routes/users');
+const coursesRoutes = require('./routes/courses');
 require('dotenv/config');
 
 // Express server creation
@@ -15,6 +16,7 @@ app.use(express.json());
 // Routes Middlewares
 app.use('/students', studentRoutes);
 app.use('/users', userRoutes);
+app.use('/courses', coursesRoutes);
 
 // Connect to DB
 mongoose.connect(process.env.DB_CONNECTION_URI!, {
