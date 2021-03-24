@@ -3,11 +3,19 @@ import mongoose, { Connection } from 'mongoose';
 const studentRoutes = require('./routes/students');
 const userRoutes = require('./routes/users');
 const coursesRoutes = require('./routes/courses');
+const cors = require('cors');
 require('dotenv/config');
 
 // Express server creation
 const app: Express = express();
 const port: number = parseInt(process.env.PORT!) || 4000;
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200, // For legacy browser support
+};
+
+app.use(cors(corsOptions));
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));

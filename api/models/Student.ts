@@ -18,6 +18,7 @@ const studentSchema: Schema = new Schema({
       value: { type: String },
     },
   ],
+  courses: [{ id: { type: String } }],
   isDeleted: {
     type: Boolean,
     default: false,

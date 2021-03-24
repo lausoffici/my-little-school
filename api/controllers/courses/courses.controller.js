@@ -17,7 +17,12 @@ exports.create = async (req, res) => {
 exports.findAll = async (req, res) => {
   try {
     const courses = await Course.find().sort('name');
-    res.json(courses);
+
+    const response = courses.map((s) => {
+      return { id: s._id, name: s.name, amount: s.amount };
+    });
+
+    res.json(response);
   } catch (err) {
     res.json({ message: err.message });
   }
