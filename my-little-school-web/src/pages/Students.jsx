@@ -17,18 +17,19 @@ const useStyles = makeStyles((theme) => ({
 
 const StudentsList = () => {
   const classes = useStyles();
-  const { data } = useFetch(`${process.env.REACT_APP_API_URL}/students`);
+  const { data, setData } = useFetch(
+    `${process.env.REACT_APP_API_URL}/students`
+  );
   const [nameLike, setNameLike] = useState("");
 
   const columns = [
     {
       field: "fullName",
-      headerName: "Alumne",
-      sortable: false,
+      headerName: "Alumno",
       width: 200,
       valueGetter: (params) =>
-        `${params.getValue("firstName") || ""} ${
-          params.getValue("lastName") || ""
+        `${params.getValue("lastName") || ""}, ${
+          params.getValue("firstName") || ""
         }`,
     },
     { field: "firstName", headerName: "Nombre", width: 150 },
@@ -41,15 +42,30 @@ const StudentsList = () => {
     ],
   };
 
+  const sortModel = [
+    {
+      field: "fullName",
+      sort: "asc",
+    },
+  ];
+  const onConfirm = (student) => {
+    setData((prevState) => [...prevState, student]);
+  };
+
   return (
     <>
       <div className={classes.title}>
         <SearchBar handleChange={(e) => setNameLike(e.target.value)} />
-        <AddStudentDialog />
+        <AddStudentDialog onConfirm={onConfirm} />
       </div>
 
       {data && (
-        <DataTable columns={columns} rows={data} filterModel={filterModel} />
+        <DataTable
+          columns={columns}
+          rows={data}
+          filterModel={filterModel}
+          sortModel={sortModel}
+        />
       )}
     </>
   );

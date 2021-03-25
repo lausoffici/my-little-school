@@ -35,7 +35,7 @@ const useFetch = (url, initialFetch = true) => {
 
   const get = useCallback((endpoint) => fetchData(endpoint), [fetchData]);
 
-  return { status, data, get };
+  return { status, data, get, setData };
 };
 
 export default useFetch;

@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DataTable = ({ columns, rows, filterModel }) => {
+const DataTable = ({ columns, rows, filterModel, sortModel }) => {
   const classes = useStyles();
   return (
     <DataGrid
@@ -18,6 +18,8 @@ const DataTable = ({ columns, rows, filterModel }) => {
       className={classes.grid}
       density="compact"
       filterModel={filterModel}
+      sortModel={sortModel}
+      disableColumnMenu={true}
     />
   );
 };

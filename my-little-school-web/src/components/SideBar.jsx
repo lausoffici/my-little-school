@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const navButtons = [
-  { label: "Alumnes", href: "/", icon: <FaceIcon /> },
+  { label: "Alumnos", href: "/", icon: <FaceIcon /> },
   { label: "Cursos", href: "/courses", icon: <SchoolIcon /> },
   { label: "Caja", href: "/cash", icon: <AttachMoneyIcon /> },
 ];

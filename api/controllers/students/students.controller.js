@@ -11,7 +11,14 @@ exports.create = async (req, res) => {
 
   try {
     const savedStudent = await student.save();
-    res.status(201).json(savedStudent);
+
+    const response = {
+      id: savedStudent._id,
+      firstName: savedStudent.firstName,
+      lastName: savedStudent.lastName,
+    };
+
+    res.status(201).json(response);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
