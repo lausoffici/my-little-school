@@ -5,7 +5,7 @@ const useFetch = (endpoint, initialFetch = true) => {
   const [data, setData] = useState(undefined);
 
   const fetchData = useCallback(
-    async (method = "GET", body = {}) => {
+    async (method = "GET", body) => {
       const requestOptions = {
         method: method,
         headers: {
