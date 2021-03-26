@@ -8,7 +8,7 @@ const columns = [
 ];
 
 const CoursesList = () => {
-  const { data } = useFetch(`${process.env.REACT_APP_API_URL}/courses`);
+  const { data } = useFetch("courses");
 
   return <>{data && <DataTable columns={columns} rows={data} />}</>;
 };

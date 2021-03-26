@@ -11,7 +11,9 @@ import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
-  addIcon: {},
+  addIcon: {
+    marginLeft: 5,
+  },
 });
 
 export default function AddStudentDialog({ onConfirm }) {
@@ -62,6 +64,7 @@ export default function AddStudentDialog({ onConfirm }) {
         className={classes.addIcon}
         startIcon={<Add />}
         variant="contained"
+        size="small"
       >
         Crear alumno
       </Button>

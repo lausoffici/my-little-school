@@ -1,15 +1,25 @@
 import { useState, useEffect, useCallback } from "react";
 
-const useFetch = (url, initialFetch = true) => {
+const useFetch = (endpoint, initialFetch = true) => {
   const [status, setStatus] = useState("idle");
   const [data, setData] = useState(undefined);
 
   const fetchData = useCallback(
-    async (endpoint) => {
+    async (method = "GET", body = {}) => {
+      const requestOptions = {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      };
       setStatus("pending");
       try {
         // fetch url
-        const response = await fetch(url + (endpoint || ""));
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/${endpoint}`,
+          requestOptions
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch");
         }
@@ -24,18 +34,18 @@ const useFetch = (url, initialFetch = true) => {
         setStatus("error");
       }
     },
-    [url]
+    [endpoint]
   );
 
   useEffect(() => {
     if (!initialFetch) return;
 
     fetchData();
-  }, [initialFetch, url, fetchData]);
+  }, [initialFetch, endpoint, fetchData]);
 
-  const get = useCallback((endpoint) => fetchData(endpoint), [fetchData]);
+  const execute = useCallback((endpoint) => fetchData(endpoint), [fetchData]);
 
-  return { status, data, get, setData };
+  return { status, execute, data, setData };
 };
 
 export default useFetch;
