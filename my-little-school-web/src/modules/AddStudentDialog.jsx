@@ -10,11 +10,14 @@ import {
 import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   addIcon: {
     marginLeft: 5,
   },
-});
+  field: {
+    margin: theme.spacing(1),
+  },
+}));
 
 export default function AddStudentDialog({ onConfirm }) {
   const classes = useStyles();
@@ -74,29 +77,29 @@ export default function AddStudentDialog({ onConfirm }) {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Crear Alumno</DialogTitle>
-        <DialogContent>
+        <DialogContent className={classes.dialog}>
           <TextField
             required
             id="firstName"
             name="firstName"
             label="Nombre"
-            fullWidth
             onChange={(e) => onChange(e)}
+            className={classes.field}
           />
           <TextField
             required
             id="lastName"
             name="lastName"
             label="Apellido"
-            fullWidth
             onChange={(e) => onChange(e)}
+            className={classes.field}
           />
           <TextField
             id="dni"
             name="dni"
             label="Dni"
-            fullWidth
             onChange={(e) => onChange(e)}
+            className={classes.field}
           />
           <TextField
             multiline
@@ -104,8 +107,9 @@ export default function AddStudentDialog({ onConfirm }) {
             id="description"
             name="description"
             label="Observaciones"
-            fullWidth
             onChange={(e) => onChange(e)}
+            className={classes.field}
+            fullWidth
           />
         </DialogContent>
         <DialogActions>
