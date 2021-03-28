@@ -82,12 +82,7 @@ export default function AddStudentDialog({ onConfirm }) {
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button
-            disabled={}
-            variant="contained"
-            onClick={handleConfirm}
-            color="primary"
-          >
+          <Button variant="contained" onClick={handleConfirm} color="primary">
             Confirmar
           </Button>
         </DialogActions>
