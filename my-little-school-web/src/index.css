@@ -24,3 +24,7 @@ code {
   min-height: 100vh;
   display: flex;
 }
+
+.MuiDataGrid-row {
+  cursor: pointer;
+}

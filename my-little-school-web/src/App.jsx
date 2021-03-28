@@ -5,9 +5,11 @@ import Students from "./pages/Students";
 import CoursesList from "./pages/Courses";
 import Cash from "./pages/Cash";
 import ErrorPage from "./pages/ErrorPage";
+import Student from "./pages/Student";
 
 const routes = [
   { path: "/", element: <Students /> },
+  { path: "/students/:id", element: <Student /> },
   { path: "/courses", element: <CoursesList /> },
   { path: "/cash", element: <Cash /> },
   { path: "*", element: <ErrorPage /> },

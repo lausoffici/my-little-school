@@ -8,18 +8,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const DataTable = ({ columns, rows, filterModel, sortModel }) => {
+const DataTable = ({ columns, rows, filterModel, sortModel, onRowClick }) => {
   const classes = useStyles();
+
   return (
     <DataGrid
       rows={rows}
       columns={columns}
-      checkboxSelection
       className={classes.grid}
       density="compact"
       filterModel={filterModel}
       sortModel={sortModel}
       disableColumnMenu={true}
+      onRowClick={onRowClick}
     />
   );
 };
