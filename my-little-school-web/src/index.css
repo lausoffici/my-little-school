@@ -28,3 +28,7 @@ code {
 .MuiDataGrid-row {
   cursor: pointer;
 }
+
+.MuiDialog-paper {
+  padding: 10px;
+}

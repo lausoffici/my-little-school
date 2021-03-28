@@ -5,12 +5,11 @@ import {
   Card,
   CardContent,
   CardActions,
-  TextField,
   Button,
   CardHeader,
-  Typography,
 } from "@material-ui/core";
 import useFetch from "../hooks/useFetch";
+import StudentForm from "../modules/Student/StudentForm";
 
 const useStyles = makeStyles((theme) => ({
   field: {
@@ -39,50 +38,7 @@ const Student = () => {
             title={`${studentData.firstName} ${studentData.lastName}`}
           />
           <CardContent className={classes.content}>
-            <Typography variant="h6" color="primary">
-              Datos personales
-            </Typography>
-            <TextField
-              required
-              id="firstName"
-              name="firstName"
-              label="Nombre"
-              onChange={(e) => onChange(e)}
-              value={studentData.firstName}
-              className={classes.field}
-              variant="outlined"
-            />
-            <TextField
-              required
-              id="lastName"
-              name="lastName"
-              label="Apellido"
-              onChange={(e) => onChange(e)}
-              value={studentData.lastName}
-              className={classes.field}
-              variant="outlined"
-            />
-            <TextField
-              id="dni"
-              name="dni"
-              label="Dni"
-              onChange={(e) => onChange(e)}
-              value={studentData.dni}
-              className={classes.field}
-              variant="outlined"
-            />
-            <TextField
-              multiline
-              rows={3}
-              id="description"
-              name="description"
-              label="Observaciones"
-              onChange={(e) => onChange(e)}
-              value={studentData.description}
-              className={classes.field}
-              variant="outlined"
-              fullWidth
-            />
+            <StudentForm studentData={studentData} onChange={onChange} />
           </CardContent>
           <CardActions>
             <Button variant="contained" color="primary">

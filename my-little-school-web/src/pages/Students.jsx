@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import DataTable from "../components/DataTable";
-import AddStudentDialog from "../modules/AddStudentDialog";
+import AddStudentDialog from "../modules/Student/AddStudentDialog";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchBar from "../components/SearchBar";
 import { useHistory } from "react-router-dom";

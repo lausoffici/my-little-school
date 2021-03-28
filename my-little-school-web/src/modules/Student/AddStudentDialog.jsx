@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Button,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
@@ -9,13 +8,11 @@ import {
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import StudentForm from "./StudentForm";
 
 const useStyles = makeStyles((theme) => ({
   addIcon: {
     marginLeft: 5,
-  },
-  field: {
-    margin: theme.spacing(1),
   },
 }));
 
@@ -75,48 +72,22 @@ export default function AddStudentDialog({ onConfirm }) {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+        className={classes.dialog}
       >
-        <DialogTitle id="form-dialog-title">Crear Alumno</DialogTitle>
-        <DialogContent className={classes.dialog}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="Nombre"
-            onChange={(e) => onChange(e)}
-            className={classes.field}
-          />
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Apellido"
-            onChange={(e) => onChange(e)}
-            className={classes.field}
-          />
-          <TextField
-            id="dni"
-            name="dni"
-            label="Dni"
-            onChange={(e) => onChange(e)}
-            className={classes.field}
-          />
-          <TextField
-            multiline
-            rows={3}
-            id="description"
-            name="description"
-            label="Observaciones"
-            onChange={(e) => onChange(e)}
-            className={classes.field}
-            fullWidth
-          />
+        <DialogTitle id="form-dialog-title">Nuevo Alumno</DialogTitle>
+        <DialogContent>
+          <StudentForm onChange={onChange} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button variant="contained" onClick={handleConfirm} color="primary">
+          <Button
+            disabled={}
+            variant="contained"
+            onClick={handleConfirm}
+            color="primary"
+          >
             Confirmar
           </Button>
         </DialogActions>
