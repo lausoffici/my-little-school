@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import Students from "./pages/Students";
 import CoursesList from "./pages/Courses";
@@ -17,20 +17,18 @@ const routes = [
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <SideBar />
-        <div className="content">
-          <Switch>
-            {routes.map(({ path, element }, index) => (
-              <Route key={index} exact path={path}>
-                {element}
-              </Route>
-            ))}
-          </Switch>
-        </div>
+    <div className="app">
+      <SideBar />
+      <div className="content">
+        <Switch>
+          {routes.map(({ path, element }, index) => (
+            <Route key={index} exact path={path}>
+              {element}
+            </Route>
+          ))}
+        </Switch>
       </div>
-    </Router>
+    </div>
   );
 }
 

@@ -12,6 +12,9 @@ const studentSchema: Schema = new Schema({
   dni: { type: String },
   birthDate: { type: Date },
   description: { type: String },
+  address: { type: String },
+  city: { type: String },
+  email: { type: String },
   phones: [
     {
       name: { type: String },

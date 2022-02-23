@@ -1,52 +1,99 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardContent,
-  CardActions,
-  Button,
-  CardHeader,
-} from "@material-ui/core";
+import { Card, CardContent, CardHeader, Typography } from "@material-ui/core";
+import StudentCourses from "../modules/Student/StudentCourses";
 import useFetch from "../hooks/useFetch";
-import StudentForm from "../modules/Student/StudentForm";
+import useModal from "../hooks/useModal";
+import AddStudentCourseModal from "../modules/Student/AddStudentCourseModal";
 
 const useStyles = makeStyles((theme) => ({
-  field: {
-    margin: theme.spacing(1),
-  },
-  root: {
+  card: {
     padding: theme.spacing(2),
+    flex: 1,
+  },
+  cardContent: {
+    display: "flex",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  formSection: {},
+  subtitle: {
+    marginBottom: theme.spacing(1),
   },
 }));
 
 const Student = () => {
+  const { isShowing, toggleModal } = useModal();
   const classes = useStyles();
   let { id } = useParams();
-  const { data: studentData, setData: setStudentData } = useFetch(
-    `students/${id}`
-  );
-
-  const onChange = ({ target: { name, value } }) =>
-    setStudentData((prevState) => ({ ...prevState, [name]: value }));
+  const { data: studentData, setStudentData } = useFetch("students/" + id);
 
   return (
     <>
       {studentData && (
-        <Card className={classes.root}>
+        <Card className={classes.card}>
           <CardHeader
             title={`${studentData.firstName} ${studentData.lastName}`}
           />
-          <CardContent className={classes.content}>
-            <StudentForm studentData={studentData} onChange={onChange} />
+          <CardContent className={classes.cardContent}>
+            <div className={classes.formSection}>
+              <Typography
+                variant="h6"
+                color="primary"
+                className={classes.subtitle}
+              >
+                Datos personales
+              </Typography>
+              <Typography>
+                <b>Nombre:</b> {studentData.firstName}
+              </Typography>
+              <Typography>
+                <b>Apellido:</b> {studentData.lastName}
+              </Typography>
+              <Typography>
+                <b>Dni:</b> {studentData.dni}
+              </Typography>
+              <Typography>
+                <b>Fecha de nacimiento:</b> {studentData.birthDate}
+              </Typography>
+            </div>
+            <div className={classes.formSection}>
+              <Typography
+                variant="h6"
+                color="primary"
+                className={classes.subtitle}
+              >
+                Contacto
+              </Typography>
+              <Typography>
+                <b>Domicilio:</b> {studentData.address}
+              </Typography>
+              <Typography>
+                <b>Localidad:</b> {studentData.city}
+              </Typography>
+              <Typography>
+                <b>Correo electrónico:</b> {studentData.email}
+              </Typography>
+            </div>
+            <div className={classes.formSection}>
+              <Typography
+                variant="h6"
+                color="primary"
+                className={classes.subtitle}
+              >
+                Cursos
+              </Typography>
+              <StudentCourses
+                courses={studentData.courses}
+                setStudentData={setStudentData}
+              />
+            </div>
           </CardContent>
-          <CardActions>
-            <Button variant="contained" color="primary">
-              Guardar
-            </Button>
-          </CardActions>
         </Card>
       )}
+      <AddStudentCourseModal isShowing={isShowing} toggleModal={toggleModal} />
     </>
   );
 };
